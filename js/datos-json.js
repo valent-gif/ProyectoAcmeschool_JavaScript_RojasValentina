@@ -40,11 +40,37 @@ function iniciarDatos () {
 if (localStorage.getItem('examenes')=== null) {
     localStorag.setItem('examenes', JSON.stringify(examenesIniciales));
 }
+if (localStorage.getItem('resultados')=== null) {
+    localStorag.setItem('resultados', JSON.stringify([]));
 }
+}
+
 function obtenerUsuarios() {
-    if (localStorage.getIte('usuarios', JSON.parse(usuarios))
-        return []
-    
-
-
+    const datos = localStorage.getItem('usuarios');
+    return datos ? JSON.parse(datos): [];
 }
+
+
+function guardarUsuarios(usuarios) {
+    localStorage.setItem('usuaruios', JSON.stringify(usuarios));
+} 
+
+function obtenerExamenes() {
+    const datos = localStorage.getItem('examenes');
+    return datos ? JSON.parse(datos): [];
+}
+
+function guardarExamenes(examenes) {
+    localStorage.setItem('examenes', JSON.stringify(examenes));
+}
+
+function obtenerResultados () {
+    const datos = localStorage.getItem('resultados');
+    return datos ? JSON.parse(datos): [];
+}
+
+function guardarResultados(resultados) {
+  localStorage.setItem('resultados', JSON.stringify(resultados));
+}
+
+iniciarDatos();
