@@ -1,3 +1,4 @@
+//Son objetos que contiene la informacion de los usuarios y de los examenes
 const usuariosIniciales = {
     nombre: "Sandra",
     email: "sandrasanchez@gmail.com",
@@ -26,3 +27,24 @@ const examenesIniciales = [
         ]
     }
 ]
+//Funciones para que los archivos lean la informacion
+//Sino existe la clave usuarios en el navegador, guardamos los iniciiales.
+
+function iniciarDatos () {
+    if (localStorage.getItem('usuarios')=== null){
+    localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
+}
+
+//Examenes 
+
+if (localStorage.getItem('examenes')=== null) {
+    localStorag.setItem('examenes', JSON.stringify(examenesIniciales));
+}
+}
+function obtenerUsuarios() {
+    if (localStorage.getIte('usuarios', JSON.parse(usuarios))
+        return []
+    
+
+
+}
