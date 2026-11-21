@@ -1,17 +1,20 @@
 //Son objetos que contiene la informacion de los usuarios y de los examenes
-const usuariosIniciales = {
+const usuariosIniciales = [
+    {
     nombre: "Sandra",
+    id: 1,
     email: "sandrasanchez@gmail.com",
     telefono: "3214567890",
     cargo: "Administrativo",
     constraseña: "1656Jdn43"
-}
+    }
+]
 
 const examenesIniciales = [
     {
         codigo: "EX-01",
         titulo: "Fundamentos de Python",
-        tiempo: "30 minutos",
+        tiempo: "30 ",
         porcentajeAprobacion: "70%",
         descripcion: "Evaluacion de fundamentos basicos",
         preguntas: [
@@ -21,7 +24,7 @@ const examenesIniciales = [
                 respuestas: [
                     { texto: "var", esCorrecta: false},
                     { texto: "const", esCorrecta: true},
-                    {texto: "let", esCorrecta: false},
+                    { texto: "let", esCorrecta: false},
                 ] 
             }
         ]
@@ -38,10 +41,10 @@ function iniciarDatos () {
 //Examenes 
 
 if (localStorage.getItem('examenes')=== null) {
-    localStorag.setItem('examenes', JSON.stringify(examenesIniciales));
+    localStorage.setItem('examenes', JSON.stringify(examenesIniciales));
 }
 if (localStorage.getItem('resultados')=== null) {
-    localStorag.setItem('resultados', JSON.stringify([]));
+    localStorage.setItem('resultados', JSON.stringify([]));
 }
 }
 
