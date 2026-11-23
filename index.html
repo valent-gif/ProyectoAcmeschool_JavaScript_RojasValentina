@@ -83,6 +83,63 @@
 </template>
 
 
+<!--Gestion de examenes-->
+
+<template id="tpl-gestion-examenes">
+  <header class="navbar-privada">
+    <h2>Acme School - Gestión de Exámenes</h2>
+    <nav>
+      <button type="button" id="nav-usuarios">Usuarios</button>
+      <button type="button" id="nav-examenes">Exámenes</button>
+      <button type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+    </nav>
+</header>
+
+<section class="contenedor">
+    <form id="form-examen">
+        <h3>Datos del Examen</h3>
+        <input type="text" id="examen-codigo" placeholder="Codigo (ej: EX-01)" required>
+        <input type="text" id="examen-titulo" placeholder="Titulo del examen" required>
+        <textarea id="examen-description" placeholder="Descripcion breve" required></textarea>
+        <input type="number" id="examen-tiempo" placeholder="Tiempo limite (en minutos)" min="1" required>
+        <input type="number" id="examen-aprobacion" placeholder="Porcentaje de aprobacion (%)" min="1" max="100" required>
+
+        <div id="bloque-preguntas">
+            <h4>Agregar Preguntas</h4>
+            <input type="text" id="pregunta-enunciado" placeholder="Enunciado de la pregunta">
+            <input type="text" id="opcion-0" placeholder="Opción A">
+            <input type="text" id="opcion-1" placeholder="Opción B">
+            <input type="text" id="opcion-2" placeholder="Opción C">
+            <input type="text" id="opcion-3" placeholder="Opción D">
+            <select id="pregunta-correcta">
+                <option value="0">Correcta: Opcion A</option>
+                <option value="1">Correcta: Opcion B</option>
+                <option value="2">Correcta: Opcion C</option>
+                <option value="3">Correcta: Opcion D</option>
+            </select>
+            <button type="button" id="btn-agregar-pregunta">Añadir pregunta a la lista</button>
+            <ul id="lista-preguntas-previa"></ul>
+        </div>
+
+        <button type="button" id="btn-agregar-pregunta">Añadir pregunta a la lista</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Titulo</th>
+                <th>Tiempo</th>
+                <th>Aprobacion</th>
+                <th>Preguntas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-examenes-body"></tbody>
+    </table>
+</section>
+</template>
+
 
 
 </body>
