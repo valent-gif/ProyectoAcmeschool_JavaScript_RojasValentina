@@ -14,6 +14,7 @@
 </head>
 <body>
 
+<!--Login-->
     <main id="contenedor-vistas"></main>
 
     <template id="tpl-login">
@@ -34,6 +35,54 @@
     <button type="button" id="btn-vovler-publico">Volver al portal Público</button>
 </section>
 </template>
+
+
+<!--Gestion de usuarios-->
+<template id="tpl-gestion-usuarios">
+    <header class="navbar-privada">
+        <h2>Acme School - Gestion de Usuarios</h2>
+        <nav>
+        <button type="button" id="nav-usuarios">Usuarios</button>
+        <button type="button" id="nav-examenes">Examenes</button>
+        <button type="button" id="btn-cerrar-sesion">Cerrar Sesion</button>
+    </nav>
+</header>
+
+<!-- Formulario de resgistro -->
+ <section class="contenedor">
+<form id="form-usuario">
+    <input type="text" id="usuario-id" placeholder="identificacion (ID)" required>
+    <input type="text" id="usuario-nombre" placeholder="Nombre completo" required>
+    <input type="email" id="usuario-email" placeholder="Correo electronico" required>
+    <input type="tel" id="usuario-telefono" placeholder="Telefono" required>
+    <input type="password" id="usuario-password" placeholder="Contraseña" required>
+
+    <select id="usuario-cargo" required>
+        <option value="Seleccione un cargo..."></option>
+        <option value="Administrador"></option>
+        <option value="Docente"></option>
+    </select>
+    <button type="submit">Guardar Usuario</button>
+</form>
+
+<!--Tabla de Usuarios-->
+<table>
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Cargo</th>
+        <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tabla-usuarios-body"></tbody>
+</table>
+</section>
+</template>
+
+
 
 
 </body>
