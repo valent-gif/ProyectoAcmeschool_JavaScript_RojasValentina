@@ -1,5 +1,5 @@
 class gestionUsuario extends HTMLElement {
-    connetedCallback() {
+    connectedCallback() {
         const template = document.getElementById('tpl-gestion-usuarios')
         const contenido = template.content.cloneNode(true);
         this.innerHTML = '';
@@ -12,7 +12,7 @@ class gestionUsuario extends HTMLElement {
     }
 
     mostrarUsuarios() {
-        const tbody = this.querySelector('#tabla.usuarios.body');
+        const tbody = this.querySelector('#tabla-usuarios-body');
         const usuarios = obtenerUsuarios();
         tbody.innerHTML = '';
 
@@ -41,7 +41,7 @@ class gestionUsuario extends HTMLElement {
             mostrarVista('usuarios');
         });
 
-        this.querySelector('#nav.examenes').addEventListener('click', () => {
+        this.querySelector('#nav-examenes').addEventListener('click', () => {
             mostrarVista('examenes');
         });
 
@@ -57,7 +57,7 @@ class gestionUsuario extends HTMLElement {
             const nombre = this.querySelector('#usuario-nombre').value.trim();
             const email = this.querySelector('#usuario-email').value.trim();
             const telefono = this.querySelector('#usuario-telefono').value.trim();
-            const password = this.querySelector('#usuario-password').value;
+            const contraseña = this.querySelector('#usuario-contraseña').value;
             const cargo = this.querySelector('#usuario-cargo').value;
 
             let usuarios = obtenerUsuarios();
@@ -65,7 +65,7 @@ class gestionUsuario extends HTMLElement {
             if (this.idEditando !== null) {
                 usuarios = usuarios.map((u) =>
                     String(u.id) === String(this.idEditando)
-                ? {id, nombre, email, telefono, password, cargo}
+                ? {id, nombre, email, telefono, contraseña, cargo}
                 :u
             );
             this.idEditando = null;
@@ -78,7 +78,7 @@ class gestionUsuario extends HTMLElement {
                 alert('Ya existe un usuario con esa identificacion o correo.');
                 return;
             }
-            usuarios.push({id, nombre, email, telefono, password, cargo});
+            usuarios.push({id, nombre, email, telefono, contraseña, cargo});
         }
 
         guardarUsuarios(usuarios);
@@ -101,8 +101,8 @@ class gestionUsuario extends HTMLElement {
             this.querySelector('#usuario-id').disabled = true;
             this.querySelector('#usuario-nombre').value = usuario.nombre
             this.querySelector('#usuario-email').value = usuario.email;
-            this.querySelector('#usuario.telefono').value = usuario.telefono;
-            this.querySelector('#usuario-password').value = usuario.password;
+            this.querySelector('#usuario-telefono').value = usuario.telefono;
+            this.querySelector('#usuario-contraseña').value = usuario.contraseña;
             this.querySelector('#usuario-cargo').value = usuario.cargo;
 
             this.idEditando = usuario.id;

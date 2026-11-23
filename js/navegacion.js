@@ -2,7 +2,7 @@ function guardarSesion (usuario){
     sessionStorage.setItem('usuarioActivo', JSON.stringify(usuario));
 }
 
-function obtenerUsuarioActivo() {
+function obtenerSesion() {
     const datos = sessionStorage.getItem('usuarioActivo');
         return datos ? JSON.parse(datos) : null;
     }
@@ -16,7 +16,7 @@ function cerrarSesion() {
 
 function mostrarVista(vista) {
   const contenedor = document.getElementById('contenedor-vistas');
-  const usuarioActivo = obtenerUsuarioActivo();
+  const usuarioActivo = obtenerSesion();
 
   if (vista === 'publico') {
     contenedor.innerHTML = '<resolucion-examenes></resolucion-examenes>';

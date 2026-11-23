@@ -21,7 +21,7 @@ class LoginAcme extends HTMLElement {
 
             const usuarios = obtenerUsuarios();
             const usuarioValido = usuarios.find(
-                (u) => u.email === email && u.password === password
+                (u) => u.email === email && u.contraseña === password
             );
 
             if (usuarioValido) {
