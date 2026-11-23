@@ -53,8 +53,22 @@ class gestionUsuario extends HTMLElement {
         formUsuario.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const id = this.querySelector('#usuario-id')
+            const id = this.querySelector('#usuario-id').value.trim();
+            const nombre = this.querySelector('#usuario-nombre').value.trim();
+            const email = this.querySelector('#usuario-email').value.trim();
+            const telefono = this.querySelector('#usuario-telefono').value.trim();
+            const password = this.querySelector('#usuario-password').value;
+            const cargo = this.querySelector('#usuario-cargo').value;
 
+            let usuarios = obtenerUsuarios();
+
+            if (this.idEditando !== null) {
+                usuarios = usuarios.map((u) =>
+                    String(u.id) === String(this.idEditando)
+                ? {id, nombre, email, telefono, password, cargo}
+                :u
+            );
+        }
 
 
 
