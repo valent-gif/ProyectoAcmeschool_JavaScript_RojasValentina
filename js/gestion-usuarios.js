@@ -68,17 +68,60 @@ class gestionUsuario extends HTMLElement {
                 ? {id, nombre, email, telefono, password, cargo}
                 :u
             );
+            this.idEditando = null;
+            this.querySelector('#usuario-id').disabled = false;
+        } else {
+            const existe = usuarios.some(
+                    (u) => String(u.id) === String(id) || u.email === email
+            );
+            if (existe) {
+                alert('Ya existe un usuario con esa identificacion o correo.');
+                return;
+            }
+            usuarios.push({id, nombre, email, telefono, password, cargo});
         }
 
+        guardarUsuarios(usuarios);
+        formUsuario.reset();
+        //Actualiza la tabla al guardar
+        this.mostrarUsuarios();
+    });
 
+    tbody.addEventListener('click', (e) => {
+        const idSeleccionado = e.target.dataset.id;
+        if(!idSeleccionado) return;
 
+        const usuarios = obtenerUsuarios();
 
+        if(e.target.classList.contains('btn-editar')) {
+            const usuario = usuarios.find((u) => String (u.id) === String(idSeleccionado));
+            if (!usuario) return;
+            
+            this.querySelector('#usuario-id').value = usuario.id;
+            this.querySelector('#usuario-id').disabled = true;
+            this.querySelector('#usuario-nombre').value = usuario.nombre
+            this.querySelector('#usuario-email').value = usuario.email;
+            this.querySelector('#usuario.telefono').value = usuario.telefono;
+            this.querySelector('#usuario-password').value = usuario.password;
+            this.querySelector('#usuario-cargo').value = usuario.cargo;
 
-        })
-    
+            this.idEditando = usuario.id;
+        }
 
+        if (e.target.classList.contains('btn-eliminar')) {
+            const sesionActual = obtenerSesion();
+            if (sesionActual && String(sesionActual.id) === String(idSeleccionado)) {
+                alert('No puedes eliminar tu propio usuario con sesion activa.');
+                return;
+            }
+
+            const filtrados = usuarios.filter((u) => String(u.id) !== String(idSeleccionado));
+            guardarUsuarios(filtrados);
+            //Actualiza la tabla al eliminar
+            this.mostrarUsuarios();
     }
-
-
-
+});
 }
+}
+
+customElements.define('gestion-usuarios', gestionUsuario);

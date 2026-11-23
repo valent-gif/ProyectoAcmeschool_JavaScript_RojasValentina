@@ -6,7 +6,7 @@ const usuariosIniciales = [
     email: "sandrasanchez@gmail.com",
     telefono: "3214567890",
     cargo: "Administrativo",
-    constraseña: "1656Jdn43"
+    contraseña: "1656Jdn43"
     }
 ]
 

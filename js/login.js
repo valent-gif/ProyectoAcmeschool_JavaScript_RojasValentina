@@ -26,17 +26,20 @@ class LoginAcme extends HTMLElement {
 
             if (usuarioValido) {
                 guardarSesion(usuarioValido);
-                if (usuarioValido.cargo === 'Administrador') {
+                if (usuarioValido.cargo === 'Administrativo') {
                     mostrarVista('usuarios');
                 } else {
                     mostrarVista('examenes');
                 }
             } else {
-                mensajeError.textContent = 'Correo o contraseña incorrectos.';
+                const elemError = mensajeError || this.querySelector('#Login-error');
+                if (elemError) {
+                    elemError.textContent = 'Correo o contraseña incorrectos.';
+                }
             }
         });
 
-        btnVolver.addEventListener('click', () => {
+        btnVolver?.addEventListener('click', () => {
             mostrarVista('publico');
         });
     }
