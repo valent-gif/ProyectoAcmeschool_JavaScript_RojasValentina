@@ -37,6 +37,7 @@
 </template>
 
 
+
 <!--Gestion de usuarios-->
 <template id="tpl-gestion-usuarios">
     <header class="navbar-privada">
@@ -81,6 +82,7 @@
 </table>
 </section>
 </template>
+
 
 
 <!--Gestion de examenes-->
@@ -141,6 +143,44 @@
 </template>
 
 
+
+<!--Resolucin de examenes-->
+
+<template id="tpl-resolucion-examenes">
+    <header class="navbar-publica">
+    <h1>Acme School - Portal de Exámenes</h1>
+    <button type="button" id="btn-ir-login">Iniciar sesión (Docentes / Admin)</button>
+</header>
+
+<section id="vista-seleccion-examen" class="contenedor">
+    <div id="datos-estudiante">
+      <h3>Datos del Estudiante</h3>
+      <input type="text" id="estudiante-nombre" placeholder="Tu nombre completo" required>
+      <input type="text" id="estudiante-id" placeholder="Tu número de identificación" required>
+    </div>
+
+    <h3>Exámenes Disponibles</h3>
+    <div id="lista-examenes-publicos"></div>
+</section>
+
+<section id="vista-examen-activo" class="contenedor" hidden>
+    <div class="barra-tiempo">
+      <h2 id="titulo-examen-activo"></h2>
+      <p>Tiempo restante: <strong id="temporizador">00:00</strong></p>
+    </div>
+    
+    <form id="form-resolver-examen">
+      <div id="contenedor-preguntas"></div>
+      <button type="submit">Finalizar y Enviar Examen</button>
+    </form>
+</section>
+
+<section id="vista-resultado-examen" class="contenedor" hidden>
+    <h2>Resultado del Examen</h2>
+    <div id="detalle-resultado"></div>
+    <button type="button" id="btn-volver-inicio">Volver a la lista de exámenes</button>
+</section>
+</template>
 
 </body>
 </html>
