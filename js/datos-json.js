@@ -55,7 +55,7 @@ function obtenerUsuarios() {
 
 
 function guardarUsuarios(usuarios) {
-    localStorage.setItem('usuaruios', JSON.stringify(usuarios));
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
 } 
 
 function obtenerExamenes() {

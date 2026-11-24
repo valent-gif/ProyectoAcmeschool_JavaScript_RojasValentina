@@ -60,8 +60,8 @@
 
     <select id="usuario-cargo" required>
         <option value="Seleccione un cargo..."></option>
-        <option value="Administrativo"></option>
-        <option value="Docente"></option>
+        <option value="Administrativo">Administrativo</option>
+        <option value="Docente">Docente</option>
     </select>
     <button type="submit">Guardar Usuario</button>
 </form>
@@ -102,7 +102,7 @@
         <h3>Datos del Examen</h3>
         <input type="text" id="examen-codigo" placeholder="Codigo (ej: EX-01)" required>
         <input type="text" id="examen-titulo" placeholder="Titulo del examen" required>
-        <textarea id="examen-description" placeholder="Descripcion breve" required></textarea>
+        <textarea id="examen-descripcion" placeholder="Descripcion breve" required></textarea>
         <input type="number" id="examen-tiempo" placeholder="Tiempo limite (en minutos)" min="1" required>
         <input type="number" id="examen-aprobacion" placeholder="Porcentaje de aprobacion (%)" min="1" max="100" required>
         
@@ -123,7 +123,7 @@
             <ul id="lista-preguntas-previa"></ul>
         </div>
         
-        <button type="button" id="btn-agregar-pregunta">Añadir pregunta a la lista</button>
+        <button type="submit">Guardar Examen Completo</button>
     </form>
     
     <table>
