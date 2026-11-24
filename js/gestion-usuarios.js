@@ -13,17 +13,20 @@ class gestionUsuario extends HTMLElement {
 
     mostrarUsuarios() {
         const tbody = this.querySelector('#tabla-usuarios-body');
+        if (!tbody) return;
         const usuarios = obtenerUsuarios();
         tbody.innerHTML = '';
 
+        if (!Array.isArray(usuarios)) return;
+
         usuarios.forEach((usuario)=> {
-            const fila =document.createElement('tr');
+            const fila = document.createElement('tr');
             fila.innerHTML = `
-            <td>${usuario.id}</td>
-            <td>${usuario.nombre}</td>
-            <td>${usuario.email}</td>
-            <td>${usuario.telefono}</td>
-            <td>${usuario.cargo}</td>
+            <td>${usuario.id ?? ''}</td>
+            <td>${usuario.nombre ?? ''}</td>
+            <td>${usuario.email ?? ''}</td>
+            <td>${usuario.telefono ?? ''}</td>
+            <td>${usuario.cargo ?? ''}</td>
             <td>
             <button type="button" class="btn-editar" data-id="${usuario.id}">Editar</button>
             <button type="button" class="btn-eliminar" data-id="${usuario.id}">Eliminar</button>
@@ -57,35 +60,44 @@ class gestionUsuario extends HTMLElement {
             const nombre = this.querySelector('#usuario-nombre').value.trim();
             const email = this.querySelector('#usuario-email').value.trim();
             const telefono = this.querySelector('#usuario-telefono').value.trim();
-            const contraseña = this.querySelector('#usuario-contraseña').value;
+            const inputContraseña = this.querySelector('#usuario-contraseña') || this.querySelector('#usuario-password');
+            const contraseña = inputContraseña ? inputContraseña.value : '';
             const cargo = this.querySelector('#usuario-cargo').value;
 
+            if (!id || !nombre || !email || !contraseña || !cargo) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
             let usuarios = obtenerUsuarios();
+            if (!Array.isArray(usuarios)) usuarios = [];
 
             if (this.idEditando !== null) {
                 usuarios = usuarios.map((u) =>
                     String(u.id) === String(this.idEditando)
-                ? {id, nombre, email, telefono, contraseña, cargo}
-                :u
-            );
-            this.idEditando = null;
-            this.querySelector('#usuario-id').disabled = false;
-        } else {
-            const existe = usuarios.some(
-                    (u) => String(u.id) === String(id) || u.email === email
-            );
-            if (existe) {
-                alert('Ya existe un usuario con esa identificacion o correo.');
-                return;
+                        ? { id, nombre, email, telefono, contraseña, password: contraseña, cargo }
+                        : u
+                );
+                this.idEditando = null;
+                this.querySelector('#usuario-id').disabled = false;
+            } else {
+                const existe = usuarios.some(
+                    (u) => (u.id !== undefined && u.id !== null && String(u.id) === String(id)) || 
+                           (u.email && u.email.toLowerCase() === email.toLowerCase())
+                );
+                if (existe) {
+                    alert('Ya existe un usuario con esa identificacion o correo.');
+                    return;
+                }
+                usuarios.push({ id, nombre, email, telefono, contraseña, password: contraseña, cargo });
             }
-            usuarios.push({id, nombre, email, telefono, contraseña, cargo});
-        }
 
-        guardarUsuarios(usuarios);
-        formUsuario.reset();
-        //Actualiza la tabla al guardar
-        this.mostrarUsuarios();
-    });
+            guardarUsuarios(usuarios);
+            alert('Usuario guardado exitosamente.');
+            formUsuario.reset();
+            //Actualiza la tabla al guardar
+            this.mostrarUsuarios();
+        });
 
     tbody.addEventListener('click', (e) => {
         const idSeleccionado = e.target.dataset.id;
@@ -102,7 +114,8 @@ class gestionUsuario extends HTMLElement {
             this.querySelector('#usuario-nombre').value = usuario.nombre
             this.querySelector('#usuario-email').value = usuario.email;
             this.querySelector('#usuario-telefono').value = usuario.telefono;
-            this.querySelector('#usuario-contraseña').value = usuario.contraseña;
+            const inputContraseña = this.querySelector('#usuario-contraseña') || this.querySelector('#usuario-password');
+            if (inputContraseña) inputContraseña.value = usuario.contraseña || usuario.password || '';
             this.querySelector('#usuario-cargo').value = usuario.cargo;
 
             this.idEditando = usuario.id;

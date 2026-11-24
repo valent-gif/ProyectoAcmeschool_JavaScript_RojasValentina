@@ -6,7 +6,8 @@ const usuariosIniciales = [
     email: "sandrasanchez@gmail.com",
     telefono: "3214567890",
     cargo: "Administrativo",
-    contraseña: "1656Jdn43"
+    contraseña: "1656Jdn43",
+    password: "1656Jdn43"
     }
 ]
 
@@ -34,23 +35,42 @@ const examenesIniciales = [
 //Sino existe la clave usuarios en el navegador, guardamos los iniciiales.
 
 function iniciarDatos () {
-    if (localStorage.getItem('usuarios')=== null){
-    localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
-}
+    const datosUsuarios = localStorage.getItem('usuarios');
+    if (datosUsuarios === null) {
+        localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
+    } else {
+        try {
+            const parsed = JSON.parse(datosUsuarios);
+            if (!Array.isArray(parsed)) {
+                const lista = parsed && typeof parsed === 'object' ? [parsed] : usuariosIniciales;
+                if (lista[0] && !lista[0].id) lista[0].id = 1;
+                localStorage.setItem('usuarios', JSON.stringify(lista));
+            }
+        } catch {
+            localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
+        }
+    }
 
-//Examenes 
-
-if (localStorage.getItem('examenes')=== null) {
-    localStorage.setItem('examenes', JSON.stringify(examenesIniciales));
-}
-if (localStorage.getItem('resultados')=== null) {
-    localStorage.setItem('resultados', JSON.stringify([]));
-}
+    //Examenes 
+    if (localStorage.getItem('examenes') === null) {
+        localStorage.setItem('examenes', JSON.stringify(examenesIniciales));
+    }
+    if (localStorage.getItem('resultados') === null) {
+        localStorage.setItem('resultados', JSON.stringify([]));
+    }
 }
 
 function obtenerUsuarios() {
     const datos = localStorage.getItem('usuarios');
-    return datos ? JSON.parse(datos): [];
+    if (!datos) return [];
+    try {
+        const parsed = JSON.parse(datos);
+        if (Array.isArray(parsed)) return parsed;
+        if (parsed && typeof parsed === 'object') return [parsed];
+        return [];
+    } catch {
+        return [];
+    }
 }
 
 
