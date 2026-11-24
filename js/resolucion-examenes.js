@@ -30,6 +30,22 @@ class ResolucionExamenes extends HTMLElement {
             return;
         }
 
-        examenes
+        examenes.forEach((examen) => {
+            const tarjeta = document.createElement('article');
+            tarjeta.className = 'tarjeta-examen';
+            tarjeta.innerHTML = `
+                <h4>${examen.titulo} (${examen.codigo})</h4>
+                <p>${examen.descripcion}</p>
+                <p><strong>Duración:</strong> ${parseInt(examen.tiempo)} min | <strong>Preguntas:</strong> ${examen.preguntas.length}</p>
+                <button type="button" class="btn-iniciar-examen" data-codigo="${examen.codigo}">Presentar Examen</button>
+            `;
+            contenedor.appendChild(tarjeta);
+        });
+    }
+    iniciarExamen(codigo) {
+     const nombreEstudiante = this.querySelector('#estudiante-nombre').ariaValueMax.trim();
+     const idEstudiante = this.querySelector('#estudiante-id').ariaValueMax.trim();
+     
+     
     }
 }
