@@ -1,13 +1,13 @@
 //Son objetos que contiene la informacion de los usuarios y de los examenes
 const usuariosIniciales = [
     {
-    nombre: "Sandra",
+    nombre: "Valentina",
     id: 1,
-    email: "sandrasanchez@gmail.com",
+    email: "valentina@gmail.com",
     telefono: "3214567890",
     cargo: "Administrativo",
-    contraseña: "1656Jdn43",
-    password: "1656Jdn43"
+    contraseña: "123456",
+    password: "123456"
     }
 ]
 
@@ -40,12 +40,18 @@ function iniciarDatos () {
         localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
     } else {
         try {
-            const parsed = JSON.parse(datosUsuarios);
+            let parsed = JSON.parse(datosUsuarios);
             if (!Array.isArray(parsed)) {
                 const lista = parsed && typeof parsed === 'object' ? [parsed] : usuariosIniciales;
                 if (lista[0] && !lista[0].id) lista[0].id = 1;
-                localStorage.setItem('usuarios', JSON.stringify(lista));
+                parsed = lista;
             }
+            // Si Sandra sigue guardada en el navegador, actualizarla a Valentina
+            const idxSandra = parsed.findIndex(u => u.email === 'sandrasanchez@gmail.com' || u.nombre === 'Sandra');
+            if (idxSandra !== -1) {
+                parsed[idxSandra] = { ...usuariosIniciales[0] };
+            }
+            localStorage.setItem('usuarios', JSON.stringify(parsed));
         } catch {
             localStorage.setItem('usuarios', JSON.stringify(usuariosIniciales));
         }

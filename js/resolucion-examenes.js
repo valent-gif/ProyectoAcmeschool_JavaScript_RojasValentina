@@ -1,7 +1,7 @@
 class ResolucionExamenes extends HTMLElement {
     connectedCallback(){
         const template = document.getElementById('tpl-resolucion-examenes');
-        const contenido = template.contentEditable.cloneNode(true);
+        const contenido = template.content.cloneNode(true);
         this.innerHTML = '';
         this.appendChild(contenido);
 
@@ -43,8 +43,8 @@ class ResolucionExamenes extends HTMLElement {
         });
     }
     iniciarExamen(codigo) {
-    const nombreEstudiante = this.querySelector('#estudiante-nombre').ariaValueMax.trim();
-    const idEstudiante = this.querySelector('#estudiante-id').ariaValueMax.trim();
+    const nombreEstudiante = this.querySelector('#estudiante-nombre').value.trim();
+    const idEstudiante = this.querySelector('#estudiante-id').value.trim();
      
     if (!nombreEstudiante || !idEstudiante) {
         alert('Por favor ingresa tu nombre completo y numero de identificacion antes de iniciar');
@@ -57,9 +57,9 @@ class ResolucionExamenes extends HTMLElement {
      
     this.examenActual = examen;
 
-    this.querySelector('#vista-seleccion-examen').hidde = true;
-    this.querySelector('#vista-resultado-examen').hidden =true;
-    this.querySelector('vista-examen-activo').hidden = false;
+    this.querySelector('#vista-seleccion-examen').hidden = true;
+    this.querySelector('#vista-resultado-examen').hidden = true;
+    this.querySelector('#vista-examen-activo').hidden = false;
 
     this.querySelector('#titulo-examen-activo').textContent = `${examen.titulo} (${examen.codigo})`;
 
@@ -68,7 +68,7 @@ class ResolucionExamenes extends HTMLElement {
 
     examen.preguntas.forEach((pregunta, indexPregunta) => {
         const bloque = document.createElement('div');
-        bloque,this.className = 'bloque-pregunta-estudiante';
+        bloque.className = 'bloque-pregunta-estudiante';
 
         const opcionesHTML = pregunta.respuestas
         .map(
