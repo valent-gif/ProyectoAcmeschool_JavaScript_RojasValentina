@@ -142,3 +142,300 @@ h1, h2, h3, h4 {
     color: var(--blanco);
     border-color: var(--peligro);
 }
+/* =====================================================================
+   BOTONES E INPUTS BASE
+   ===================================================================== */
+
+button {
+    font-family: inherit;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radio-md);
+    padding: 0.82rem 1.4rem;
+    cursor: pointer;
+    transition: var(--transicion);
+    font-size: 0.94rem;
+}
+
+button[type="submit"],
+.btn-iniciar-examen,
+#btn-volver-inicio {
+    background: linear-gradient(135deg, var(--teal-800) 0%, var(--teal-700) 50%, var(--turquesa) 100%);
+    background-size: 200% auto;
+    color: var(--blanco);
+    box-shadow: 0 10px 22px -6px rgba(8, 127, 120, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+button[type="submit"]:hover,
+.btn-iniciar-examen:hover,
+#btn-volver-inicio:hover {
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -6px rgba(54, 185, 172, 0.6);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.9rem 1.15rem;
+    border: 2px solid var(--menta-200);
+    border-radius: var(--radio-md);
+    background-color: var(--menta-100);
+    color: var(--texto-oscuro);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transicion);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--texto-medio);
+    opacity: 0.8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    background-color: var(--blanco);
+    border-color: var(--turquesa);
+    box-shadow: 0 0 0 4px rgba(54, 185, 172, 0.22);
+}
+
+input:disabled {
+    background-color: #D8ECE8;
+    color: var(--texto-medio);
+    cursor: not-allowed;
+}
+
+textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+/* =====================================================================
+   PRIMERA PÁGINA: DISEÑO ASIMÉTRICO SPLIT-WORKSPACE
+   ===================================================================== */
+
+.contenedor {
+    max-width: 1360px;
+    margin: 2.2rem auto;
+    padding: 0 2rem 4rem;
+}
+
+/* Divide la pantalla inicial en Panel Izquierdo (410px) + Catálogo Derecho */
+#vista-seleccion-examen {
+    display: grid;
+    grid-template-columns: 410px 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 2.5rem;
+    row-gap: 1.5rem;
+    align-items: start;
+}
+
+/* Columna Izquierda: Torre de Identificación del Estudiante */
+#datos-estudiante {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    position: sticky;
+    top: 6.2rem;
+    background: linear-gradient(160deg, var(--teal-900) 0%, var(--teal-800) 55%, var(--teal-700) 100%);
+    color: var(--blanco);
+    padding: 2.4rem 2.1rem;
+    border-radius: var(--radio-xl);
+    box-shadow: var(--sombra-hero);
+    border: 1.5px solid rgba(191, 237, 230, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    overflow: hidden;
+}
+
+/* Aros geométricos decorativos en el fondo del panel izquierdo */
+#datos-estudiante::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 28px solid rgba(54, 185, 172, 0.14);
+    right: -95px;
+    bottom: -95px;
+    pointer-events: none;
+}
+
+/* Insignia superior del panel izquierdo */
+#datos-estudiante::before {
+    content: "✦ PASO 1 · IDENTIFICACIÓN";
+    align-self: flex-start;
+    background: rgba(54, 185, 172, 0.22);
+    color: var(--menta-200);
+    border: 1px solid rgba(191, 237, 230, 0.45);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    padding: 0.38rem 0.9rem;
+    border-radius: 999px;
+}
+
+#datos-estudiante h3 {
+    color: var(--blanco);
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+}
+
+#datos-estudiante input {
+    background: rgba(255, 255, 255, 0.96);
+    border: 2px solid transparent;
+    border-radius: var(--radio-md);
+    padding: 1rem 1.2rem;
+    font-size: 0.96rem;
+    color: var(--texto-oscuro);
+    box-shadow: 0 8px 20px rgba(3, 43, 41, 0.18);
+    position: relative;
+    z-index: 2;
+}
+
+#datos-estudiante input:focus {
+    background: var(--blanco);
+    border-color: var(--turquesa-claro);
+    box-shadow: 0 0 0 4px rgba(54, 185, 172, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Columna Derecha: Encabezado de Sección */
+#vista-seleccion-examen > h3 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background: var(--blanco);
+    padding: 1.25rem 1.8rem;
+    border-radius: var(--radio-lg);
+    border: 1.5px solid var(--menta-200);
+    box-shadow: var(--sombra-card);
+    color: var(--teal-800);
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+#vista-seleccion-examen > h3::after {
+    content: "SELECCIONA UNA PRUEBA";
+    background: var(--menta-100);
+    color: var(--teal-700);
+    border: 1px solid var(--menta-200);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+}
+
+/* Columna Derecha: Cuadrícula de Tarjetas Bento Arquitectónicas */
+#lista-examenes-publicos {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+    gap: 1.8rem;
+}
+
+.tarjeta-examen {
+    background: var(--blanco);
+    border-radius: var(--radio-xl);
+    padding: 0 1.8rem 1.8rem;
+    box-shadow: var(--sombra-card);
+    border: 1.5px solid var(--menta-200);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transicion);
+}
+
+/* Banner superior ilustrado con rayas diagonales sutiles dentro de cada tarjeta */
+.tarjeta-examen::before {
+    content: "● EVALUACIÓN ACTIVA";
+    display: flex;
+    align-items: center;
+    margin: 0 -1.8rem 0.4rem;
+    padding: 1.15rem 1.8rem;
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.06) 10px,
+            transparent 10px,
+            transparent 20px
+        ),
+        linear-gradient(120deg, var(--teal-800) 0%, var(--teal-700) 60%, var(--turquesa) 100%);
+    color: var(--blanco);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    border-bottom: 3px solid var(--turquesa);
+}
+
+/* Medallón flotante en la esquina derecha de la cabecera */
+.tarjeta-examen::after {
+    content: "⚡";
+    position: absolute;
+    top: 1.65rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: var(--blanco);
+    color: var(--teal-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 8px 18px rgba(5, 68, 64, 0.22);
+    border: 2px solid var(--menta-200);
+}
+
+.tarjeta-examen:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-hero);
+    border-color: var(--turquesa);
+}
+
+.tarjeta-examen h4 {
+    color: var(--teal-900);
+    font-size: 1.38rem;
+    font-weight: 800;
+    padding-right: 2.5rem;
+}
+
+.tarjeta-examen p {
+    color: var(--texto-medio);
+    font-size: 0.94rem;
+}
+
+.tarjeta-examen .btn-iniciar-examen {
+    margin-top: 0.6rem;
+    width: 100%;
+    padding: 0.95rem;
+    font-size: 0.98rem;
+    border-radius: var(--radio-md);
+}
+
+.tarjeta-examen .btn-iniciar-examen::after {
+    content: " →";
+}
