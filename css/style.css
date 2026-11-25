@@ -1,0 +1,144 @@
+/* =====================================================================
+   ACME SCHOOL - DISEÑO SPLIT-COMMAND & BENTO ARCHITECTURAL
+   Paleta: #075E59 | #087F78 | #36B9AC | #BFEDE6 | #E5F7F4 | #FFFFFF
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --teal-950: #032B29;
+    --teal-900: #054440;
+    --teal-800: #075E59;
+    --teal-700: #087F78;
+    --turquesa: #36B9AC;
+    --turquesa-claro: #5CE1D4;
+    --menta-200: #BFEDE6;
+    --menta-100: #E5F7F4;
+    --lienzo: #EEF9F7;
+    --blanco: #FFFFFF;
+    --texto-oscuro: #053330;
+    --texto-medio: #3E6B68;
+    --peligro: #E0485A;
+    --sombra-card: 0 18px 40px -12px rgba(7, 94, 89, 0.14);
+    --sombra-hero: 0 28px 60px -15px rgba(5, 68, 64, 0.35);
+    --radio-xl: 26px;
+    --radio-lg: 18px;
+    --radio-md: 12px;
+    --transicion: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--texto-oscuro);
+    min-height: 100vh;
+    background-color: var(--lienzo);
+    background-image:
+        radial-gradient(circle at 0% 0%, rgba(54, 185, 172, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 100% 25%, rgba(191, 237, 230, 0.95) 0%, transparent 45%),
+        linear-gradient(rgba(7, 94, 89, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 94, 89, 0.045) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+    line-height: 1.55;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.025em;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* =====================================================================
+   BARRA DE NAVEGACIÓN SUPERIOR (ARQUITECTÓNICA)
+   ===================================================================== */
+
+.navbar-publica,
+.navbar-privada {
+    background: linear-gradient(90deg, var(--teal-900) 0%, var(--teal-800) 55%, var(--teal-700) 100%);
+    color: var(--blanco);
+    padding: 1rem 2.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--turquesa);
+    box-shadow: 0 10px 30px rgba(5, 68, 64, 0.22);
+}
+
+.navbar-publica h1,
+.navbar-privada h2 {
+    font-size: 1.38rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.navbar-publica h1::before,
+.navbar-privada h2::before {
+    content: "AS";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--turquesa), var(--menta-200));
+    color: var(--teal-950);
+    font-weight: 900;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(54, 185, 172, 0.45);
+    transform: rotate(-4deg);
+}
+
+.navbar-privada nav {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.navbar-publica button,
+.navbar-privada nav button {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--blanco);
+    border: 1.5px solid rgba(191, 237, 230, 0.5);
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: var(--transicion);
+}
+
+.navbar-publica button:hover,
+.navbar-privada nav button:hover {
+    background: var(--turquesa);
+    color: var(--teal-950);
+    border-color: var(--turquesa);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(54, 185, 172, 0.4);
+}
+
+#btn-cerrar-sesion {
+    background: rgba(224, 72, 90, 0.22);
+    border-color: rgba(255, 195, 202, 0.5);
+}
+
+#btn-cerrar-sesion:hover {
+    background: var(--peligro);
+    color: var(--blanco);
+    border-color: var(--peligro);
+}
