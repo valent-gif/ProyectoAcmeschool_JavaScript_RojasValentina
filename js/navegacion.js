@@ -1,3 +1,4 @@
+// Guarda el usuario que inicio sesion
 function guardarSesion (usuario){
     sessionStorage.setItem('usuarioActivo', JSON.stringify(usuario));
 }
@@ -7,7 +8,7 @@ function obtenerSesion() {
         return datos ? JSON.parse(datos) : null;
     }
 
-
+// Se elimina la información de la sesión activa, pero los usuarios y los exámenes siguen guardados.
 function cerrarSesion() {
     sessionStorage.removeItem('usuarioActivo');
     mostrarVista('publico');

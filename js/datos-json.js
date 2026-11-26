@@ -1,7 +1,7 @@
 //Son objetos que contiene la informacion de los usuarios y de los examenes
 const usuariosIniciales = [
     {
-    nombre: "Valentina",
+    nombre: "valentina",
     id: 1,
     email: "valentina@gmail.com",
     telefono: "3214567890",
@@ -47,9 +47,9 @@ function iniciarDatos () {
                 parsed = lista;
             }
             // Si Sandra sigue guardada en el navegador, actualizarla a Valentina
-            const idxSandra = parsed.findIndex(u => u.email === 'sandrasanchez@gmail.com' || u.nombre === 'Sandra');
-            if (idxSandra !== -1) {
-                parsed[idxSandra] = { ...usuariosIniciales[0] };
+            const idxSandra = parsed.findIndex(u => u.email === 'valentina@gmail.com' || u.nombre === 'valentina');
+            if (idxvalentina !== -1) {
+                parsed[idxvalentina] = { ...usuariosIniciales[0] };
             }
             localStorage.setItem('usuarios', JSON.stringify(parsed));
         } catch {
@@ -79,11 +79,12 @@ function obtenerUsuarios() {
     }
 }
 
-
+//JSON.stringify un arreglo lo convierte en texto parqa guardar en local Storage
 function guardarUsuarios(usuarios) {
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
 } 
 
+//JSON.parse convierte el texto en objetos o arreglos
 function obtenerExamenes() {
     const datos = localStorage.getItem('examenes');
     return datos ? JSON.parse(datos): [];

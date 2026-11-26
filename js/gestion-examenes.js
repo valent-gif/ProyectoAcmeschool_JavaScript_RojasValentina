@@ -1,3 +1,4 @@
+// Web component
 class gestionExamenes extends HTMLElement {
     connectedCallback() {
         const template = document.getElementById('tpl-gestion-examenes');

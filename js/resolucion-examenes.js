@@ -1,3 +1,4 @@
+//Web component
 class ResolucionExamenes extends HTMLElement {
     connectedCallback(){
         const template = document.getElementById('tpl-resolucion-examenes');
@@ -14,6 +15,9 @@ class ResolucionExamenes extends HTMLElement {
 
     }
 
+
+    // sirve para detener el temporizador cuando se elimina el componente, 
+    // evitando que el intervalo continúe ejecutándose.
     disconnectedCallback() {
         if(this.intervaloTiempo) {
             clearInterval(this.intervaloTiempo);
@@ -88,6 +92,9 @@ class ResolucionExamenes extends HTMLElement {
         contenedorPreguntas.appendChild(bloque);
     });
 
+    //setInterval ejecuta una función repetidamente cada cierto tiempo
+    // clearInterval Detiene el intervalo que estaba ejecutándose
+    //parseInt convierte un valor a numero entero 
     this.iniciarTemporizador(parseInt(examen.tiempo));
     }
 
@@ -205,5 +212,5 @@ class ResolucionExamenes extends HTMLElement {
         });
     }
 }
-
+//Registra el componente personalizado y relaciona su nombre con la clase que lo controla.
 customElements.define('resolucion-examenes', ResolucionExamenes);

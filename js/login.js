@@ -1,3 +1,4 @@
+// WEb component
 class LoginAcme extends HTMLElement {
     connectedCallback() {
         const template = document.getElementById('tpl-login');
@@ -19,11 +20,13 @@ class LoginAcme extends HTMLElement {
             const email = this.querySelector('#login-email').value.trim();
             const password = this.querySelector('#login-password').value;
 
+            //find que usuario cumpla condicion
             const usuarios = obtenerUsuarios();
             const usuarioValido = usuarios.find(
                 (u) => u.email === email && (u.contraseña === password || u.password === password)
             );
 
+            
             if (usuarioValido) {
                 guardarSesion(usuarioValido);
                 if (usuarioValido.cargo === 'Administrativo') {

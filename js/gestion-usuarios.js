@@ -1,3 +1,4 @@
+//WEb component
 class gestionUsuario extends HTMLElement {
     connectedCallback() {
         const template = document.getElementById('tpl-gestion-usuarios')
@@ -73,6 +74,7 @@ class gestionUsuario extends HTMLElement {
             if (!Array.isArray(usuarios)) usuarios = [];
 
             if (this.idEditando !== null) {
+                // map recorre los usuarios y crea un nuevo arreglo.
                 usuarios = usuarios.map((u) =>
                     String(u.id) === String(this.idEditando)
                         ? { id, nombre, email, telefono, contraseña, password: contraseña, cargo }
@@ -89,6 +91,7 @@ class gestionUsuario extends HTMLElement {
                     alert('Ya existe un usuario con esa identificacion o correo.');
                     return;
                 }
+                //push arrega un nuevo elemento al arreglo
                 usuarios.push({ id, nombre, email, telefono, contraseña, password: contraseña, cargo });
             }
 
@@ -103,6 +106,7 @@ class gestionUsuario extends HTMLElement {
         const idSeleccionado = e.target.dataset.id;
         if(!idSeleccionado) return;
 
+        // Recupera los usuarios y luego se muestran en la tabla.
         const usuarios = obtenerUsuarios();
 
         if(e.target.classList.contains('btn-editar')) {
